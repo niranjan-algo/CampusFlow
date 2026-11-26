@@ -4,6 +4,7 @@ function Login() {
     const[pass,setPass]=useState('')
     const handleSubmit = (e)=>{
     e.preventDefault()
+    console.log(email,pass)
     }
     return (
     <div className="text-center">
