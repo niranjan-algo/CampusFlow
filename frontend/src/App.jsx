@@ -4,6 +4,7 @@ import Login from './pages/login'
 import Resource from './pages/resource'
 import Dashboard from './pages/dashboard'
 import Booking from './pages/bookingPage'
+import Register from './pages/register'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/resource" element={<Resource/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/booking" element={<Booking/>}/>
+        <Route path="/register" element={<Register/>}/>
       </Routes>
       </BrowserRouter>
   )
