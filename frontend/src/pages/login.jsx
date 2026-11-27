@@ -1,48 +1,46 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+
 function Login() {
-  const navigate = useNavigate();
-  const [formdata, setFormdata] = useState({
-    email: "",
-    pass: "",
-  });
-  const location = useLocation();
-  const userdata = location.state;
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("CampusFlow Login", formdata);
-    alert("Login Successful");
-    navigate("/dashboard", { state: formdata });
-  };
-  function handlechange(e) {
-    setFormdata({
-      ...formdata,
-      [e.target.name]: e.target.value,
-    });
-  }
-  return (
-    <div className="text-center">
-      <p className="text-6xl font-bold text-blue-500">CampusFlow</p>
-      <br />
-      <p className="text-4xl">Campus Resource and Equipment Management</p>
-      <br />
-      <p className="text-3xl font-bold">Login Page</p>
-      <br />
-      <form onSubmit={handleSubmit}>
-        <label className="text-2xl">Email Address :</label>
-        <input type="email" name="email" required placeholder="Enter your College Email" onChange={handlechange} />
-        <br />
-        <br />
-        <label className="text-2xl">Password :</label>
-        <input type="password" name="pass" required placeholder="Enter your Password" onChange={handlechange} />
-        <br />
-        <br />
-        <button type="submit" className="text-2xl font-bold text-blue-500">
-          Login
-        </button>
-      </form>
-    </div>
-  );
+    const navigate = useNavigate();
+    const location = useLocation();
+    const registerdata = location.state?.registerdata;
+
+    const [logindata, setLogindata] = useState({ email: "", password: "" });
+
+    function handlechange(e) {
+        setLogindata({ ...logindata, [e.target.name]: e.target.value });
+    }
+    function handleSubmit(e) {
+        e.preventDefault();
+        if (
+            registerdata &&
+            logindata.email === registerdata.email &&
+            logindata.password === registerdata.password
+        ) {
+            alert("Login successful");
+            console.log(logindata);
+            navigate("/dashboard", { state: logindata });
+        } else {
+            alert("Invalid email or password");
+        }
+    }
+
+    return (
+        <div className="min-h-screen flex items-center justify-center bg-slate-100 p-4">
+            <form onSubmit={handleSubmit} className="w-full max-w-md space-y-4 rounded-2xl bg-white p-8 shadow-lg">
+                <h1 className="text-center text-3xl font-bold text-slate-500">CampusFlow Login</h1>
+                <label htmlFor="email" className="block">Email</label>
+                <input type="email" name="email" id="email" required onChange={handlechange} placeholder="Enter your email" className="w-full rounded-lg border p-2" />
+                <label htmlFor ="password" className="block">Password</label>
+                <input type="password" name="password" id="password" required onChange={handlechange} placeholder="Enter your password" className="w-full rounded-lg border p-2" />
+                <button className="w-full rounded-lg bg-slate-400 p-2 font-semibold text-black">Login</button>
+                <p className="text-center text-sm">New user?
+                   <Link to="/" className="text-blue-700 underline">Register</Link>
+                </p>
+            </form>
+        </div>
+    );
 }
 
 export default Login;
