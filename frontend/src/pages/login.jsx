@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 function Login() {
   const navigate = useNavigate();
   const [formdata, setFormdata] = useState({
     email: "",
     pass: "",
   });
+  const location = useLocation();
+  const userdata = location.state;
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("CampusFlow Login", formdata);
