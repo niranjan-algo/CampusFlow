@@ -15,8 +15,8 @@ function Register() {
         navigate("/login", { state: { registerdata: data } });
     }
     return (
-        <div className="min-h-screen flex items-center justify-center bg-slate-100 p-4">
-            <form onSubmit={handleSubmit(print)} className="w-full max-w-md space-y-3 rounded-2xl bg-white p-8 shadow-lg">
+        <div className="min-h-screen flex items-center justify-center bg-olive-100 p-4">
+            <form onSubmit={handleSubmit(print)} className="w-full max-w-md space-y-3 bg-olive-200 p-8 shadow-lg">
                 <h1 className="text-center text-3xl font-bold text-slate-400">CampusFlow Register</h1>
                 <label htmlFor="name" className="block">Name</label>
                 <input {...register("name")} placeholder="Enter your name" id="name" className="w-full rounded-lg border p-2" />
